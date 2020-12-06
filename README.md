@@ -1,7 +1,14 @@
 # StochNorm
 Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https://proceedings.neurips.cc//paper/2020/file/bc573864331a9e42e4511de6f678aa83-Paper.pdf).
 
-## Prerequisites:
+<p align="center">
+  <img src="https://github.com/thuml/StochNorm/blob/main/arch.png" width="300">
+  <br/>
+  <br/>
+  <a href="https://github.com/thuml/StochNorm/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/thuml/StochNorm?" /></a>
+</p>
+
+## Prerequisites
 * Python3
 * PyTorch == 1.1.0 (with suitable CUDA and CuDNN version)
 * torchvision == 0.3.0
@@ -9,7 +16,7 @@ Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https:
 * argparse
 * tqdm
 
-## Dataset:
+## Datasets
 |Dataset|Download Link|
 |--|--|
 | CUB-200-2011 | http://www.vision.caltech.edu/visipedia/CUB-200-2011.html |
