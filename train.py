@@ -17,16 +17,12 @@ from utils.transforms import get_transforms
 from utils.tools import AccuracyMeter, TenCropsTest
 
 
-def get_writer(log_dir):
-    return SummaryWriter(log_dir)
-
-
 def get_configs():
     parser = argparse.ArgumentParser(
         description='Pytorch Stochastic Normalization Training')
 
     # train
-    parser.add_argument('--gpu', default='0', type=str,
+    parser.add_argument('--gpu', default=0, type=int,
                         help='GPU num for training')
     parser.add_argument('--seed', type=int, default=2020)
 
@@ -81,6 +77,10 @@ def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
 
 
+def get_writer(log_dir):
+    return SummaryWriter(log_dir)
+
+
 def get_data_loader(configs):
     # data augmentation
     data_transforms = get_transforms(resize_size=256, crop_size=224)
@@ -125,37 +125,6 @@ def set_seeds(seed):
     torch.cuda.manual_seed(seed)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
-
-
-def main():
-    configs = get_configs()
-    print(configs)
-    os.environ['CUDA_VISIBLE_DEVICES'] = configs.gpu
-    set_seeds(configs.seed)
-
-    train_loader, val_loader, test_loaders = get_data_loader(configs)
-
-    class Net(nn.Module):
-        def __init__(self):
-            super(Net, self).__init__()
-            self.f_net = ResNet50_F(pretrained=True, norm_layer=StochNorm2d)
-            self.c_net = nn.Linear(self.f_net.output_dim, configs.class_num)
-            self.c_net.weight.data.normal_(0, 0.01)
-            self.c_net.bias.data.fill_(0.0)
-
-        def forward(self, x):
-            feature = self.f_net(x)
-            out = self.c_net(feature)
-            return out
-
-    net = Net().cuda()
-
-    # set StochNorm layers
-    for module in net.f_net.modules():
-        if isinstance(module, StochNorm2d):
-            module.p = configs.p
-
-    train(configs, train_loader, val_loader, test_loaders, net)
 
 
 def train(configs, train_loader, val_loader, test_loaders, net):
@@ -250,6 +219,37 @@ def train(configs, train_loader, val_loader, test_loaders, net):
         if iter_num % configs.print_iter == 0:
             print(
                 "Iter: {}/{} Loss: {:2f}, d/c: {}/{}".format(iter_num, configs.total_iter, loss, data_duration, calc_duration))
+
+
+def main():
+    configs = get_configs()
+    print(configs)
+    torch.cuda.set_device(configs.gpu)
+    set_seeds(configs.seed)
+
+    train_loader, val_loader, test_loaders = get_data_loader(configs)
+
+    class Net(nn.Module):
+        def __init__(self):
+            super(Net, self).__init__()
+            self.f_net = ResNet50_F(pretrained=True, norm_layer=StochNorm2d)
+            self.c_net = nn.Linear(self.f_net.output_dim, configs.class_num)
+            self.c_net.weight.data.normal_(0, 0.01)
+            self.c_net.bias.data.fill_(0.0)
+
+        def forward(self, x):
+            feature = self.f_net(x)
+            out = self.c_net(feature)
+            return out
+            
+    net = Net().cuda()
+
+    # set StochNorm layers
+    for module in net.f_net.modules():
+        if isinstance(module, StochNorm2d):
+            module.p = configs.p
+
+    train(configs, train_loader, val_loader, test_loaders, net)
 
 
 if __name__ == '__main__':
