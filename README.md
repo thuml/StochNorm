@@ -17,8 +17,8 @@ Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https:
 * tqdm
 
 ## Datasets
-|Dataset|Download Link|
-|--|--|
+| Dataset | Download Link |
+| -- | -- |
 | CUB-200-2011 | http://www.vision.caltech.edu/visipedia/CUB-200-2011.html |
 | Stanford Cars | http://ai.stanford.edu/~jkrause/cars/car_dataset.html |
 | FGVC Aircraft | http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/ |
@@ -29,7 +29,17 @@ Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https:
 python --gpu [gpu_num] --data_path /path/to/dataset train.py --class_num [class_num] --p 0.5
 ```
 
-# Citation
+## Some Results
+We trained our StochNorm on CUB-200-2011 on full train data with code in this repo. Results are shown in this table.
+
+| sampling rate | Top-1 Acc |
+| -- | -- |
+| 15% | 50.41 |
+| 30% | 62.34 |
+| 50% | 72.01 |
+| 100% | 79.58 |
+
+## Citation
 If you use this code for your research, please consider citing:
 ```
 @article{kou2020stochastic,
