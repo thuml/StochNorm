@@ -30,7 +30,7 @@ python --gpu [gpu_num] --data_path /path/to/dataset train.py --class_num [class_
 ```
 
 ## Some Results
-We trained our StochNorm on CUB-200-2011 on full train data with code in this repo. Results are shown in this table.
+We re-trained our StochNorm with this code on full train data of CUB-200-2011. Results are shown in the table below.
 
 | Sampling Rate | Top-1 Acc(%) |
 | -- | -- |
