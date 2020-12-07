@@ -9,10 +9,10 @@ Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https:
 </p>
 
 ## Dependencies
-* Python3
-* PyTorch == 1.1.0 (with suitable CUDA and CuDNN version)
+* python3
+* torch == 1.1.0 (with suitable CUDA and CuDNN version)
 * torchvision == 0.3.0
-* Numpy
+* numpy
 * argparse
 * tqdm
 
@@ -26,18 +26,18 @@ Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https:
 
 ## Quick Start
 ```
-python --gpu [gpu_num] --data_path /path/to/dataset train.py --class_num [class_num] --p 0.5
+python --gpu [gpu_num] --data_path /path/to/dataset --class_num [class_num] --p 0.5 train.py 
 ```
 
 ## Some Results
-We re-trained our StochNorm with this code on full train data of CUB-200-2011. Results are shown in the table below.
+We re-trained our StochNorm with this code on full 15% train data of CUB-200-2011. Results are shown in the table below.
 
 | Sampling Rate | Top-1 Acc(%) |
 | -- | -- |
 | 15% | 50.41 |
-| 30% | 62.34 |
-| 50% | 72.01 |
-| 100% | 79.58 |
+| 30% | 62.09 |
+| 50% | 72.05 |
+| 100% | 79.65 |
 
 ## Citation
 If you use this code for your research, please consider citing:
