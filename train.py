@@ -132,8 +132,8 @@ def train(configs, train_loader, val_loader, test_loaders, net):
     train_iter = iter(train_loader)
 
     # different learning rates for different layers
-    params_list = [{"params": filter(lambda p: p.requires_grad, net.f_net.parameters()), "lr_ratio": 1},
-                   {"params": filter(lambda p: p.requires_grad, net.c_net.parameters()), "lr_ratio": 10}]
+    params_list = [{"params": filter(lambda p: p.requires_grad, net.f_net.parameters())},
+                   {"params": filter(lambda p: p.requires_grad, net.c_net.parameters()), "lr": configs.lr * 10}]
 
     # optimizer and scheduler
     optimizer = torch.optim.SGD(params_list, lr=configs.lr, weight_decay=configs.weight_decay,
@@ -241,7 +241,7 @@ def main():
             feature = self.f_net(x)
             out = self.c_net(feature)
             return out
-            
+
     net = Net().cuda()
 
     # set StochNorm layers

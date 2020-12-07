@@ -8,7 +8,7 @@ Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https:
   <a href="https://github.com/thuml/StochNorm/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/thuml/StochNorm?" /></a>
 </p>
 
-## Prerequisites
+## Dependencies
 * Python3
 * PyTorch == 1.1.0 (with suitable CUDA and CuDNN version)
 * torchvision == 0.3.0
