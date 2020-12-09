@@ -22,7 +22,7 @@ Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https:
 | CUB-200-2011 | http://www.vision.caltech.edu/visipedia/CUB-200-2011.html |
 | Stanford Cars | http://ai.stanford.edu/~jkrause/cars/car_dataset.html |
 | FGVC Aircraft | http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/ |
-| NIH Chest X-ray | / |
+| NIH Chest X-ray | https://nihcc.app.box.com/v/ChestXray-NIHCC |
 
 ## Quick Start
 ```
