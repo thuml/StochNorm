@@ -1,6 +1,8 @@
 # StochNorm
 Original implementation for NeurIPS 2020 paper [Stochastic Normalization](https://proceedings.neurips.cc//paper/2020/file/bc573864331a9e42e4511de6f678aa83-Paper.pdf).
 
+[News] 2022/04/27 Please refer to the [Transfer Learning Library](https://github.com/thuml/Transfer-Learning-Library/blob/master/talib/finetune/stochnorm.py) for a modular implementation.
+
 <p align="center">
   <img src="https://github.com/thuml/StochNorm/blob/main/arch.png" width="300">
   <br/>
@@ -52,4 +54,4 @@ If you use this code for your research, please consider citing:
 ```
 
 ## Contact
-If you have any problem about our code, feel free to contact kz19@mails.tsinghua.edu.com.
+If you have any problem about our code, feel free to contact kz19@mails.tsinghua.edu.cn.
